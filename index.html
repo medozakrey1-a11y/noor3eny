@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى نور عيني مريومة - 11/11</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800;900&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #09030d;
+            --primary-red: #e63946;
+            --accent-pink: #ff758f;
+            --rose-gold: #f4a261;
+            --gold-light: #fefae0;
+            --card-back-bg: linear-gradient(145deg, #1f0a1e, #360927);
+            --card-front-bg: linear-gradient(145deg, #2b0b1a, #150510);
+            --glow-color: rgba(230, 57, 70, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--gold-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(230, 57, 70, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 10% 80%, rgba(255, 117, 143, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(244, 162, 97, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            padding-bottom: 80px;
+        }
+
+        /* القلوب المتساقطة والنجوم */
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            user-select: none;
+            animation: floatDown linear infinite;
+        }
+
+        @keyframes floatDown {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(0.8);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1.1);
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* الهيدر الفاخر */
+        header {
+            text-align: center;
+            padding: 50px 15px 30px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-pink));
+            color: #fff;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            box-shadow: 0 0 25px var(--glow-color);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 3.2rem;
+            color: #fff;
+            text-shadow: 0 0 20px var(--accent-pink), 0 0 40px var(--primary-red);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .intro-text {
+            font-size: 1.4rem;
+            color: var(--rose-gold);
+            line-height: 1.9;
+            max-width: 750px;
+            margin: 0 auto 30px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .divider {
+            height: 3px;
+            width: 200px;
+            background: linear-gradient(90deg, transparent, var(--accent-pink), var(--rose-gold), transparent);
+            margin: 40px auto;
+            border-radius: 50%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            font-family: 'Amiri', serif;
+            color: var(--rose-gold);
+            margin: 50px 0 30px;
+            text-shadow: 0 0 15px rgba(244, 162, 97, 0.4);
+        }
+
+        /* 3D Flip Cards - بطاقات القلوب التفاعلية */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            perspective: 1000px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 320px;
+            cursor: pointer;
+        }
+
+        .flip-card.large-card {
+            height: 480px;
+            grid-column: 1 / -1;
+        }
+
+        .flip-card.medium-card {
+            height: 340px;
+            grid-column: 1 / -1;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background: var(--card-front-bg);
+        }
+
+        .flip-card-front::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(230, 57, 70, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .card-num {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: rgba(230, 57, 70, 0.3);
+            border: 1px solid var(--accent-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .flip-card-front h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .click-icon {
+            font-size: 1rem;
+            color: var(--accent-pink);
+            margin-top: 15px;
+            font-weight: 600;
+            background: rgba(255, 117, 143, 0.1);
+            padding: 6px 15px;
+            border-radius: 20px;
+            border: 1px dashed var(--accent-pink);
+        }
+
+        .flip-card-back {
+            background: var(--card-back-bg);
+            transform: rotateY(180deg);
+            justify-content: flex-start;
+            text-align: right;
+            overflow-y: auto;
+            border-color: var(--accent-pink);
+        }
+
+        .flip-card-back p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--gold-light);
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+
+        .flip-card-back::-webkit-scrollbar {
+            width: 5px;
+        }
+        .flip-card-back::-webkit-scrollbar-thumb {
+            background: var(--accent-pink);
+            border-radius: 10px;
+        }
+
+        /* زر الحب الكبير والتأثيرات */
+        .action-area {
+            text-align: center;
+            margin: 50px 0 30px;
+        }
+
+        .love-button {
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-pink));
+            color: #fff;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 35px var(--glow-color);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .love-button:hover {
+            transform: translateY(-5deg) scale(1.03);
+            box-shadow: 0 15px 45px rgba(230, 57, 70, 0.7);
+        }
+
+        .love-button:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .intro-text { font-size: 1.15rem; }
+            .flip-card { height: 340px; }
+            .flip-card.large-card { height: 550px; }
+            .flip-card.medium-card { height: 360px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-container"></div>
+
+    <div class="container">
+        <!-- المقدمة -->
+        <header>
+            <div class="date-badge">11 / 11 ❤️</div>
+            <h1>بحبك اوي يانور عيني 🥰❤️</h1>
+            <p class="intro-text">
+                النهاردة يوم مميز جداً بالنسبة ليا، حبيت أجمعلك فيه شوية حاجات من قلبي عشان أقولك أنتي قد إيه غالية عليا ومافيش منك في الدنيا كلها ❤️
+            </p>
+            <div class="divider"></div>
+        </header>
+
+        <!-- بطاقات القلوب التفاعلية للأسباب -->
+        <h2 class="section-title">دوسـي على الكارت عشان تشوفي الكلام 🥰</h2>
+        <div class="cards-grid">
+
+            <div class="flip-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-num">1</div>
+                        <h3>ضحكتك الي بموتت فيها دي 🥰</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي الكارت 🥰</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>بعشق اوي بجد ضحكتك يابنتي والله اي وقت ببقا متدايق فيه والله بجد باعت ڤويسات ليكي وانت بتضحكي عندي برايڤت في الشات بتاعي بحببب اوي اقعد اسمعهم وببقا فرحان اوي بجد وبموت فيكي عموما ضحكتك بتسيح قلبي يارومي بجد ربنا يخليكي ليا ياقطتي.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-num">2</div>
+                        <h3>طيبتك وحنيتك 🥰</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي الكارت 🥰</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>عشان انت يامريومة اطيب إنسانة قابلتها والله وأحن قلب شوفته صاحبتي وحبيبتي اوي بجد ديما حنينة عليا بحب اهتمامك بيا وبحبك وبحب وجودك.بجد قلبك أبيض وجميل اوييي والله وصافي ربنا يبعد عنه اي زعل وحزن واي وجع يامريومتي يارب ياحبيبي قبل ما يصيبك اي زعل يجي فيا قبليكي ويبعد عنك كل شر يامريومتي ويحفظك ليا ياحبيبي ويبعد عنك اي عين وحشة 🥰.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-num">3</div>
+                        <h3>إنك نور عيني 😱❤️</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي الكارت 🥰</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>من اول يوم دخلتي فيه وانت نور عيني الي بشوف بيه بجد الس الدنيا بتنور ليا وهو معايا ومش بشوف فيها اي حلوة لو زعلانة مني عشان كدة بجد ديما فرحت مهمة بالنسبالي ياكتكوتة😱❤️.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-num">4</div>
+                        <h3>نكدك وعندك🥰</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي الكارت 🥰</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>بحب نكدك اوي عموما بيدي يومي طعم وبهجة وبحبه اوي بجد وبحبك وانت بتدلعي وتتمايصي بتبقي كتكوتةةةة اوي بجد وبحبك وانت مهيبرة يالهوي بحسك مكسرات بجد وبحب عندك مع انه بيعصبني اوي بس بجد بحبه ربنا ما يحرمني منك ولا من اي حاجة فيكي.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-num">5</div>
+                        <h3>حلاوتك ياوتكة😱❤️</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي الكارت 🥰</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>انك بقا مزة اويييييي بجددددد بعشقك وبعشق حلاوتك يامكنتي ياصاروخيييي يا هاتكة عرض قلبي بحلاوتك اقسم بالله.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-num">6</div>
+                        <h3>ادريناليني😱</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي الكارت 🥰</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>يمكن مفهمتيش يعني ايه أدريناليني بس قصدي ان كلمة صغيرة منك تحفيز قادرة تملاني باور وطاقة وفرحة بجد أي حاجة صغيرة منك ياروحي قادرة بجد تخليني فرحان اوي ياميمي بحبك.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-num">7</div>
+                        <h3>علاقتنا ب بعض ❤️</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي الكارت 🥰</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>علاقتنا ببعض اكتر علاقة بحبها اويييي لأن انت بالنسبالي كلل الدنيا بجد انت الناس والأهل والصحاب والحبايب والدنيا والمال والجمال وكل حاجة والله بحب انك واخدة عليا بحب سفالتنا سوا بحب هزارنا سوا بحب خناقنا اوي بحب لما نتصالح بحب لما نتعاتب بحب لما تعيطي واجي اصالحك عشان اعاكس فيكي وفي عيونك الي بتلمع زي الجوهرة وهي مدمعة بحبك اوي يامرمورة.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-num">8</div>
+                        <h3>صوتك الي بيغسل قلبي من جوا ❤️</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي الكارت 🥰</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <p>بحب صوتك اوي عموما اجمل حاجة ممكن اسمعها ياقطتي ياحلوة انت.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الجواب في كارت فليب كارد كبير -->
+            <div class="flip-card large-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>جواب من قلبي ليكي 🥰❤️</h3>
+                        <div class="click-icon">اضغطي هنا عشان تقري الجواب 🥰</div>
+                    </div>
+                    <div class="flip-card-back" onclick="event.stopPropagation()">
+                        <p>انا بقا يامريومة من اول مرة شوفتك فيها وانا بحبك اوي بحبك بشكل غريب مش مفهوم زي اكني كنت طفل وتايه ولقا اهله مسافر غريب ولقا ناس تفهمه انسان تايه ولقا بيته غريق ولقا عوامة بجد تعبان ولقا الدوا انت كنت اجمل حاجة حصلت دخلتي حياتي صلحتيلي قلبي صلحتيني انا شخصيا غيرتيني خلتيني انسان تاني بصمتك في حياة الي حواليكي ديما حلوة شبهك يامريومة عشان انت جميلة اوي وعشان انا بحبك اوي وعشان بجد بموت فيكي ومن غيرك مش هبقا انا مش هعرف افرح بجد هينقصني حاجات كتير يامريم معرفش حياتي من غير مريم معناها ايه ولا شكلها ازاي بس انت بجد والله جزء اساسي من حياتي مستعد ديما اجرب معاكي بدل المرة ميت الف مرة عشان ملناش غير بعض محدش هيقدر يستحمل دماغنا دي غيرنا يانور عيني محدش هيفهمني زيك ولا حد هيفهمك زيي مستحيل أعيش عمري ادور على حد زيك او شبهك عموما عشان مش هلاقي لأن انت مميزة اويييي بجد.
+
+انت ميزتك عن اي حد والله من اول يوم عرفتك فيه لغاية دلوقت وانا بحبك اوي وانا بموت فيكي وانا مش متخيل بكرة من غيرك وانا مش متخيل حياتي غير بيكي ومعاكي و ولادي منك وبيتي ريحتك وصوتك وحركتك فيه ولبسك معايا في دولاب واحد كدة ومدفيين بعض بجد بستنى اليوم ده كل يوم بتمنى الأيام والسنين تعدي بجد عشان اعيش معاكي اليوم ده يامريومة عشان فعلا بحبك اوي والله ومش عايز من الدنيا دي غيرك يامرمر قلبي ياروحيييي يا بسكوتي انت🥰❤️.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- سر يوم 11/11 في كارت فليب كارد متنسق -->
+            <div class="flip-card medium-card" onclick="flip(this, event)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3>سر يوم 11 / 11 😱❤️</h3>
+                        <div class="click-icon">اضغطي هنا عشان تكشفي السر 😱❤️</div>
+                    </div>
+                    <div class="flip-card-back" onclick="event.stopPropagation()">
+                        <p style="text-align: center; font-size: 1.25rem;">مش سر ولا حاجة بس متبقي ٥ ايام ونتم ال ٢٧٠ يوم سوا ٩شهور سنة الا ٣ شهور بجد فرحانننن اوي يارب يانور عيني نتم مع بعض العمر كله لغاية ما نشيب ونكبر سوا ان شاء الله يامريومة قلبي ❤️</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- زر الانفجار الرومانسي -->
+        <div class="action-area">
+            <button class="love-button" onclick="burstHearts()">
+                <span>دوسـي هنـا عشان يوصلك حبي 🥰❤️</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // دالة قلب البطاقات
+        function flip(cardElement, event) {
+            cardElement.classList.toggle('flipped');
+        }
+
+        // إنشاء خلفية متساقطة
+        function createParticle() {
+            const container = document.getElementById('particles-container');
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const items = ['❤️', '🥰', '✨'];
+            particle.innerHTML = items[Math.floor(Math.random() * items.length)];
+            
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 3 + 4 + 's';
+            particle.style.fontSize = Math.random() * 1.2 + 0.8 + 'rem';
+            
+            container.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 7000);
+        }
+
+        setInterval(createParticle, 300);
+
+        // انفجار القلوب عند التفاعل
+        function burstHearts() {
+            for(let i = 0; i < 45; i++) {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.classList.add('particle');
+                    p.innerHTML = Math.random() > 0.5 ? '❤️' : '🥰';
+                    p.style.left = Math.random() * 100 + 'vw';
+                    p.style.animationDuration = Math.random() * 2 + 2 + 's';
+                    p.style.fontSize = Math.random() * 2 + 1 + 'rem';
+                    document.getElementById('particles-container').appendChild(p);
+
+                    setTimeout(() => p.remove(), 4000);
+                }, i * 40);
+            }
+            alert('بحبك اوي يا مريومة يا نور عيني! 🥰❤️');
+        }
+    </script>
+</body>
+</html>
+
+```
